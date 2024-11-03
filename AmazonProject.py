@@ -18,12 +18,15 @@ st.image(logourl, caption='Amazon Sales Project', width=200)
 # Set up the Streamlit app layout
 c1, c2 = st.columns(2)
 # Define button click actions
+
 if c1.button('Home', use_container_width=True):
     st.session_state.active_page = "Home"
 if c2.button('Data Visualization', use_container_width=True):
     st.session_state.active_page = "Data Visualization"
-
-if st.session_state.active_page == 'Home':
+# Set "Home" as the default if no button is selected
+if "active_page" not in st.session_state:
+    st.session_state.active_page = "Home"
+elif st.session_state.active_page == 'Home':
     # Add a colored title using Markdown with a hexadecimal color code
     st.markdown("<h1 style='color: #00000;'>Amazon Sales Analysis</h1>", unsafe_allow_html=True)
     pdf_url = 'https://drive.google.com/file/d/1Vfx4Ke5IR6Try7CVFr59L-CT3EJymDLC/view?usp=sharing'
